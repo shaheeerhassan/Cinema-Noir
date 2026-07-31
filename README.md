@@ -2,30 +2,31 @@
 
 A high-performance, lightweight **RESTful Movie Database Backend API** built entirely in **pure Java** as a 2nd-semester Database course project. By eliminating heavyweight frameworks like Spring, servlet containers, or external JSON libraries, this project achieves near-zero overhead. It relies solely on the JDK's native networking capabilities and raw JDBC.
 
-### 👥 Authors
-* **Shaheer Hassan**
-* **Moiz Hakro**
-* **Saim Abdullah**
+## 👥 Authors
+
+- **Shaheer Hassan** — Backend development, API implementation, and web design.
+- **Moiz Hakro** — Database work and resource collection.
+- **Saim Abdullah** — Frontend development.
 
 ---
 
 ## 🚀 Key Features
 
-* 🔍 **Advanced Search & Filter:** Global movie listing with multi-parameter filtering (keyword, release year, genre).
-* 🎭 **Deep Relations:** Comprehensive entity mapping linking movies to cast members, directors, and genres.
-* 🔑 **Core Authentication:** Secure user signup and session endpoints (`/api/auth/*`).
-* 📋 **Personalized Watchlists:** User-specific bookmarking engine to add, remove, and track movies.
-* ⭐ **Interactive Reviews:** Unique per-user rating and review system with dynamic average score updates.
-* 🌐 **Cross-Origin Ready:** Native CORS handling built from scratch to support any modern frontend.
+- 🔍 **Advanced Search & Filter:** Global movie listing with multi-parameter filtering (keyword, release year, genre).
+- 🎭 **Deep Relations:** Comprehensive entity mapping linking movies to cast members, directors, and genres.
+- 🔑 **Core Authentication:** Secure user signup and session endpoints (`/api/auth/*`).
+- 📋 **Personalized Watchlists:** User-specific bookmarking engine to add, remove, and track movies.
+- ⭐ **Interactive Reviews:** Unique per-user rating and review system with dynamic average score updates.
+- 🌐 **Cross-Origin Ready:** Native CORS handling built from scratch to support any modern frontend.
 
 ---
 
 ## 🛠️ Tech Stack & Constraints
 
-* **Runtime:** Java JDK 17+ (Built-in `com.sun.net.httpserver.HttpServer`)
-* **Database:** MySQL + Native JDBC Driver (`mysql-connector-j`)
-* **Architecture:** Clean **Layered Architecture** (Controller ➔ Service ➔ DAO ➔ Database)
-* **Zero-Dependency Design:** Hand-rolled custom HTTP routing, JSON serialization string builders, and CORS header injection.
+- **Runtime:** Java JDK 17+ (built-in `com.sun.net.httpserver.HttpServer`)
+- **Database:** MySQL + native JDBC driver (`mysql-connector-j`)
+- **Architecture:** Clean **Layered Architecture** (Controller → Service → DAO → Database)
+- **Zero-Dependency Design:** Hand-rolled custom HTTP routing, JSON serialization with string builders, and CORS header injection.
 
 ---
 
@@ -35,7 +36,7 @@ A high-performance, lightweight **RESTful Movie Database Backend API** built ent
   <summary>📸 Click to expand screenshots</summary>
   <br>
   <p align="center">
-    <img width="48% " alt="Screenshot 1" src="https://github.com/user-attachments/assets/b1dce7dc-73ed-4318-b6a2-2096de4b01bc" />
+    <img width="48%" alt="Screenshot 1" src="https://github.com/user-attachments/assets/b1dce7dc-73ed-4318-b6a2-2096de4b01bc" />
     <img width="48%" alt="Screenshot 2" src="https://github.com/user-attachments/assets/77d945e7-3678-4e5c-a67d-6185eec2ecee" />
   </p>
   <p align="center">
@@ -95,8 +96,9 @@ src/com/movieapp/
 ## ⚙️ Getting Started
 
 ### Prerequisites
-* Java JDK 17 or higher
-* MySQL Server instance
+
+- Java JDK 17 or higher
+- MySQL Server instance
 
 ### Installation & Run
 
@@ -105,7 +107,7 @@ src/com/movieapp/
    CREATE DATABASE movie_management;
    ```
 
-2. **Configuration:** Navigate to `src/com/movieapp/config/DBUtils.java` and update your database credentials:
+2. **Configuration:** Navigate to `src/com/movieapp/config/DBUtils.java` and update your database credentials.
    ```java
    private static final String URL = "jdbc:mysql://localhost:3606/movie_management";
    private static final String USER = "your_username";

@@ -5,7 +5,7 @@ A high-performance, lightweight **RESTful Movie Database Backend API** built ent
 By eliminating heavyweight frameworks like Spring, servlet containers, or external JSON libraries, this project achieves near-zero overhead. It relies solely on the JDK's native networking capabilities and raw JDBC.
 
 ### 👥 Authors
-*   **Areeb**
+*   **Shaheer Hassan**
 *   **Moiz Hakro**
 *   **Saim Abdullah**
 

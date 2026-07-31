@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema Noir - Browse</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@200..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,line-clamp"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#121414",
+                        surface: "#121414",
+                        "surface-dim": "#121414",
+                        "surface-container-lowest": "#0c0f0f",
+                        "surface-container-low": "#1a1c1c",
+                        "surface-container": "#1e2020",
+                        "surface-container-high": "#282a2b",
+                        "surface-container-highest": "#333535",
+                        "surface-variant": "#333535",
+                        "on-background": "#e2e2e2",
+                        "on-surface": "#e2e2e2",
+                        "on-surface-variant": "#cfc4c5",
+                        secondary: "#ffd65b",
+                        "secondary-fixed-dim": "#f0c110",
+                        "on-secondary": "#3d2f00",
+                        outline: "#988e90",
+                        "outline-variant": "#4c4546",
+                        error: "#ffb4ab",
+                        "error-container": "#93000a",
+                        "on-error": "#690005"
+                    },
+                    fontFamily: {
+                        sans: ["Inter"],
+                        "display-xl": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    fontSize: {
+                        "display-xl": ["56px", { lineHeight: "1.05", letterSpacing: "-0.02em", fontWeight: "800" }],
+                        "headline-lg": ["32px", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "700" }],
+                        "headline-md": ["22px", { lineHeight: "1.25", fontWeight: "650" }],
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "body-md": ["16px", { lineHeight: "1.55", fontWeight: "400" }],
+                        "label-bold": ["14px", { lineHeight: "1", letterSpacing: "0.06em", fontWeight: "700" }],
+                        "label-sm": ["12px", { lineHeight: "1", fontWeight: "500" }]
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    boxShadow: {
+                        "noir": "0 24px 60px rgba(0,0,0,0.7)",
+                        "glow": "0 0 24px rgba(245,197,24,0.25)"
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+        }
+        .hover\\:glow-yellow:hover { text-shadow: 0 0 12px rgba(245, 197, 24, 0.55); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-sans antialiased min-h-screen">
+    <!-- Top App Bar -->
+    <header class="bg-black/95 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 py-4 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-8">
+                <a href="index.html" class="text-2xl font-black italic tracking-tighter text-secondary uppercase">CINEMA NOIR</a>
+                <nav class="hidden md:flex items-center gap-6 text-sm">
+                    <a href="index.html" class="text-secondary font-semibold border-b-2 border-secondary pb-1 hover:glow-yellow transition">Browse</a>
+                    <a href="watchlist.html" class="text-neutral-400 hover:text-white hover:text-secondary hover:glow-yellow transition">Watchlist</a>
+                    <a href="actors.html" class="text-neutral-400 hover:text-white hover:text-secondary hover:glow-yellow transition">Actors</a>
+                </nav>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <div id="userInfo" class="hidden md:flex items-center gap-3">
+                    <div class="flex items-center gap-2 px-3 py-2 rounded-full border border-white/10 bg-surface-container-highest/50">
+                        <span class="material-symbols-outlined text-secondary">person</span>
+                        <span id="username" class="text-sm text-on-surface"></span>
+                    </div>
+                    <button onclick="logout()" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-surface-container-highest/50 text-on-surface hover:border-secondary hover:text-secondary hover:glow-yellow transition">
+                        <span class="material-symbols-outlined">logout</span>
+                        <span class="hidden lg:inline">Logout</span>
+                    </button>
+                </div>
+                <div id="authButtons" class="flex items-center gap-2">
+                    <a href="login.html" class="px-4 py-2 rounded-full border border-white/10 bg-surface-container-highest/50 text-on-surface hover:border-secondary hover:text-secondary hover:glow-yellow transition">Login</a>
+                    <a href="signup.html" class="px-4 py-2 rounded-full bg-secondary text-on-secondary font-semibold hover:bg-secondary-fixed-dim shadow-glow transition">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero / Featured -->
+        <section class="relative min-h-[520px] md:min-h-[660px] flex items-end overflow-hidden">
+            <div id="heroImage" class="absolute inset-0 bg-center bg-cover"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-transparent"></div>
+            <div class="relative w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 pb-14">
+                <div class="max-w-3xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-black/40 backdrop-blur text-on-surface-variant mb-4">
+                        <span class="material-symbols-outlined text-secondary">theaters</span>
+                        <span class="text-xs tracking-widest uppercase">Now Showing</span>
+                    </div>
+                    <h1 class="text-display-xl font-display-xl text-on-surface">Browse the archive.</h1>
+                    <p class="mt-4 text-body-lg font-body-lg text-on-surface-variant max-w-2xl">Search by title, filter by year and genre, then step into the details to rate and curate your watchlist.</p>
+                    <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                        <button onclick="scrollToMovies()" class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-lg bg-secondary text-on-secondary font-semibold hover:bg-secondary-fixed-dim shadow-glow transition">
+                            <span class="material-symbols-outlined">search</span>
+                            Explore
+                        </button>
+                        <a href="watchlist.html" class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-lg border-2 border-secondary text-secondary hover:bg-secondary/10 transition">
+                            <span class="material-symbols-outlined">bookmark</span>
+                            Watchlist
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search & Filter -->
+        <section class="border-b border-white/10 bg-surface-container-lowest/40">
+            <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 py-10">
+                <div class="flex items-end justify-between gap-6 mb-6">
+                    <div>
+                        <h2 class="text-headline-lg font-headline-lg text-on-surface">Search & Filter</h2>
+                        <p class="mt-2 text-body-md font-body-md text-on-surface-variant">Precision controls for fast discovery.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+                    <div class="md:col-span-6">
+                        <label class="block text-label-bold font-label-bold text-on-surface-variant uppercase tracking-wider mb-2" for="searchInput">Keyword</label>
+                        <div class="relative">
+                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary">search</span>
+                            <input type="text" id="searchInput" placeholder="Name, year, genre, actor..." class="w-full bg-surface-container-low border border-outline-variant/60 rounded-lg py-3.5 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary/50 transition" />
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-3">
+                        <label class="block text-label-bold font-label-bold text-on-surface-variant uppercase tracking-wider mb-2" for="yearFilter">Year</label>
+                        <select id="yearFilter" class="w-full bg-surface-container-low border border-outline-variant/60 rounded-lg py-3.5 px-4 text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary/50 transition">
+                            <option value="">All Years</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                            <option value="2014">2014</option>
+                            <option value="2013">2013</option>
+                            <option value="2012">2012</option>
+                            <option value="2011">2011</option>
+                            <option value="2010">2010</option>
+                            <option value="2009">2009</option>
+                            <option value="2008">2008</option>
+                            <option value="2005">2005</option>
+                            <option value="2000">2000</option>
+                            <option value="1999">1999</option>
+                            <option value="1995">1995</option>
+                            <option value="1994">1994</option>
+                            <option value="1990">1990</option>
+                            <option value="1980">1980</option>
+                            <option value="1972">1972</option>
+                        </select>
+                    </div>
+
+                    <div class="md:col-span-3">
+                        <label class="block text-label-bold font-label-bold text-on-surface-variant uppercase tracking-wider mb-2" for="genreFilter">Genre</label>
+                        <select id="genreFilter" class="w-full bg-surface-container-low border border-outline-variant/60 rounded-lg py-3.5 px-4 text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary/50 transition">
+                            <option value="">All Genres</option>
+                            <option value="1">Action</option>
+                            <option value="2">Adventure</option>
+                            <option value="3">Comedy</option>
+                            <option value="4">Crime</option>
+                            <option value="5">Drama</option>
+                            <option value="6">Fantasy</option>
+                            <option value="7">Horror</option>
+                            <option value="8">Mystery</option>
+                            <option value="9">Sci-Fi</option>
+                            <option value="10">Thriller</option>
+                            <option value="11">Animation</option>
+                            <option value="12">Biography</option>
+                        </select>
+                    </div>
+
+                    <div class="md:col-span-12 flex justify-end">
+                        <button onclick="applyFilters()" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-secondary text-on-secondary font-semibold hover:bg-secondary-fixed-dim shadow-glow transition">
+                            <span class="material-symbols-outlined">tune</span>
+                            Apply Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Movies Grid -->
+        <section id="moviesSection" class="py-12 md:py-16">
+            <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10">
+                <div class="flex items-end justify-between gap-6 mb-8 border-b border-white/10 pb-4">
+                    <h2 class="text-headline-lg font-headline-lg text-on-surface">Featured Movies</h2>
+                    <div class="hidden md:flex items-center gap-2 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-secondary">star</span>
+                        <span class="text-sm">Hover for quick view</span>
+                    </div>
+                </div>
+
+                <div id="movieGrid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
+                    <!-- Movies populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Nav (Mobile) -->
+    <nav class="md:hidden bg-black/95 backdrop-blur-md fixed bottom-0 left-0 w-full z-50 border-t border-white/10">
+        <div class="flex justify-around items-center px-4 py-3 text-[10px] font-semibold uppercase tracking-widest">
+            <a href="index.html" class="flex flex-col items-center justify-center text-secondary bg-neutral-900/50 rounded-lg px-3 py-1 transition">
+                <span class="material-symbols-outlined">movie</span>
+                <span>Home</span>
+            </a>
+            <button type="button" onclick="scrollToMovies()" class="flex flex-col items-center justify-center text-neutral-500 hover:text-secondary transition px-3 py-1">
+                <span class="material-symbols-outlined">search</span>
+                <span>Search</span>
+            </button>
+            <a href="watchlist.html" class="flex flex-col items-center justify-center text-neutral-500 hover:text-secondary transition px-3 py-1">
+                <span class="material-symbols-outlined">bookmark</span>
+                <span>Watchlist</span>
+            </a>
+            <a href="actors.html" class="flex flex-col items-center justify-center text-neutral-500 hover:text-secondary transition px-3 py-1">
+                <span class="material-symbols-outlined">person</span>
+                <span>Actors</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

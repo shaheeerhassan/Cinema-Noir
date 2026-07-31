@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Cinema Noir</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@200..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#121414",
+                        "surface-container-low": "#1a1c1c",
+                        "on-surface": "#e2e2e2",
+                        "on-surface-variant": "#cfc4c5",
+                        secondary: "#ffd65b",
+                        "on-secondary": "#3d2f00",
+                        "outline-variant": "#4c4546"
+                    },
+                    fontFamily: { sans: ["Inter"] }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen font-sans antialiased">
+    <div class="min-h-screen flex items-center justify-center px-6">
+        <div class="w-full max-w-2xl">
+            <div class="rounded-2xl border border-white/10 bg-surface-container-low/60 backdrop-blur-xl p-10 shadow-2xl shadow-black/70 relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-72 h-72 bg-secondary/10 blur-[70px] rounded-full"></div>
+                <div class="relative">
+                    <a href="index.html" class="inline-block text-secondary font-black italic tracking-tighter uppercase text-2xl">CINEMA NOIR</a>
+                    <div class="mt-8 flex items-start gap-6">
+                        <div class="shrink-0 w-14 h-14 rounded-xl bg-black/40 border border-white/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">local_movies</span>
+                        </div>
+                        <div>
+                            <div class="text-6xl font-black tracking-tight">404</div>
+                            <h1 class="mt-2 text-2xl font-bold">Reel not found</h1>
+                            <p class="mt-2 text-on-surface-variant">The page you tried to reach isn't in the archive. Return to Browse to continue.</p>
+                            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                                <a href="index.html" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-secondary text-on-secondary font-semibold hover:opacity-95 transition">
+                                    <span class="material-symbols-outlined">arrow_back</span>
+                                    Back to Browse
+                                </a>
+                                <a href="watchlist.html" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg border border-white/10 hover:border-secondary hover:text-secondary transition">
+                                    <span class="material-symbols-outlined">bookmark</span>
+                                    Watchlist
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

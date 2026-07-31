@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema Noir - Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@200..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#121414",
+                        "surface-container-low": "#1a1c1c",
+                        "surface-container-highest": "#333535",
+                        "on-surface": "#e2e2e2",
+                        "on-surface-variant": "#cfc4c5",
+                        secondary: "#ffd65b",
+                        "secondary-fixed-dim": "#f0c110",
+                        "on-secondary": "#3d2f00",
+                        "outline-variant": "#4c4546",
+                        "error-container": "#93000a",
+                        "on-error": "#690005"
+                    },
+                    fontFamily: { sans: ["Inter"] }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glow-effect { box-shadow: 0 0 60px -15px rgba(240, 193, 16, 0.15); }
+    </style>
+</head>
+
+<body class="bg-background text-on-surface min-h-screen flex items-center justify-center font-sans antialiased relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-overlay pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-background via-background/95 to-background pointer-events-none"></div>
+
+    <main class="w-full max-w-[420px] px-6 relative z-10">
+        <div class="mb-10 text-center">
+            <a href="index.html" class="inline-block font-black italic tracking-tighter text-secondary uppercase glow-effect text-3xl">CINEMA NOIR</a>
+            <p class="text-on-surface-variant mt-2">Enter the screening room</p>
+        </div>
+
+        <div class="w-full bg-surface-container-low/80 backdrop-blur-xl rounded-xl p-8 border border-outline-variant/30 shadow-2xl shadow-black/80">
+            <form onsubmit="handleLogin(event)" class="space-y-6">
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider" for="username">Username</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/60">person</span>
+                        <input id="username" type="text" required placeholder="johndoe" class="w-full bg-surface-container-highest/50 border border-outline-variant/50 rounded-lg pl-12 pr-4 py-3 text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary/50 transition" />
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider" for="password">Password</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/60">lock</span>
+                        <input id="password" type="password" required placeholder="••••••••" class="w-full bg-surface-container-highest/50 border border-outline-variant/50 rounded-lg pl-12 pr-4 py-3 text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary/50 transition" />
+                    </div>
+                </div>
+
+                <div id="errorMessage" class="hidden bg-error-container/20 border border-error-container text-on-surface px-4 py-3 rounded text-sm"></div>
+
+                <button type="submit" class="w-full bg-secondary text-on-secondary font-bold uppercase tracking-wider rounded-lg py-4 hover:bg-secondary-fixed-dim hover:shadow-[0_0_20px_rgba(240,193,16,0.25)] transition-all duration-300 flex justify-center items-center gap-2 group">
+                    <span>Sign In</span>
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">login</span>
+                </button>
+            </form>
+        </div>
+
+        <div class="mt-8 text-center text-on-surface-variant">
+            <span>New to the theater?</span>
+            <a href="signup.html" class="ml-1 font-bold text-secondary hover:underline underline-offset-4">Request Access</a>
+        </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script>
+        async function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.classList.add('hidden');
+
+            try {
+                const response = await fetch('http://localhost:8080/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (response.ok) {
+                    const user = await response.json();
+                    localStorage.setItem('user', JSON.stringify(user));
+                    window.location.href = 'index.html';
+                } else {
+                    const error = await response.json().catch(() => ({}));
+                    errorDiv.textContent = error.message || 'Login failed. Please try again.';
+                    errorDiv.classList.remove('hidden');
+                }
+            } catch (error) {
+                errorDiv.textContent = 'Error: ' + error.message;
+                errorDiv.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
